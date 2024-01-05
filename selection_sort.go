@@ -3,28 +3,24 @@ package main
 import "fmt"
 
 func main() {
-    var n = []int{1, 39, 2, 9, 7, 54, 11}
+    n := []int{1, 39, 2, 9, 7, 54, 11}
+    
+    for i := 0; i < len(n)-1; i++ {
+        minIndex := i
 
-    var i = 1
-    for i < len(n) - 1 {
-        var j = i + 1
-        var minIndex = i
-
-        if j < len(n) {
+        // Find the index of the minimum element in the unsorted part of the array
+        for j := i + 1; j < len(n); j++ {
             if n[j] < n[minIndex] {
                 minIndex = j
             }
-            j++
         }
 
+        // Swap the found minimum element with the first element of the unsorted part
         if minIndex != i {
-            var temp = n[i]
-            n[i] = n[minIndex]
-            n[minIndex] = temp
+            n[i], n[minIndex] = n[minIndex], n[i]
         }
-
-        i++
     }
 
     fmt.Println(n)
 }
+
